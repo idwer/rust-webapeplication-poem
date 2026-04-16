@@ -27,7 +27,7 @@ pub struct ApeIndexInput {
 
 impl ApeIndexInput {
     // height and wingspan can be signed ints, the validator macro will handle input filtering
-    fn ape_index(height: i16, wingspan: i16) -> f32 {
+    fn calculate_ape_index(height: i16, wingspan: i16) -> f32 {
         wingspan as f32 / height as f32
     }
 
@@ -35,7 +35,7 @@ impl ApeIndexInput {
         ApeIndexOutput {
             height: self.height,
             wingspan: self.wingspan,
-            ape_index: Self::ape_index(self.height, self.wingspan),
+            ape_index: Self::calculate_ape_index(self.height, self.wingspan),
         }
     }
 }
@@ -46,6 +46,6 @@ mod tests_ape_lib {
 
     #[test]
     fn test_ape_index() {
-        assert_eq!(ApeIndexInput::ape_index(100, 106), 1.06);
+        assert_eq!(ApeIndexInput::calculate_ape_index(100, 106), 1.06);
     }
 }
