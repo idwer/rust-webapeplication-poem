@@ -9,7 +9,7 @@ pub struct ApeIndexOutput {
     pub ape_index: f32,
 }
 
-#[derive(Deserialize, Serialize, Validate)]
+#[derive(Deserialize, Validate)]
 pub struct ApeIndexInput {
     #[validate(range(
         min = 1,
