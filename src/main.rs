@@ -9,12 +9,18 @@ mod routes;
 
 use crate::routes::ape_get::ape_get;
 use crate::routes::ape_post::ape_post;
+use crate::routes::http_404_handler::handle_404;
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
     let app = Route::new()
         .at("/ape_get", get(ape_get))
         .at("/ape_post", post(ape_post))
+        .at("/*",
+            get(handle_404)
+            .post(handle_404)
+        )
+
         ;
 
     Server::new(TcpListener::bind("0.0.0.0:3000"))
